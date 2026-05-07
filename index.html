@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>股票追踪</title>
-    <link rel="stylesheet" href="./styles.css?v=20260507-stableclose2" />
+    <link rel="stylesheet" href="./styles.css?v=20260507-export1" />
   </head>
   <body>
     <main class="shell">
@@ -62,6 +62,15 @@
             </select>
           </label>
           <button id="restoreOrderButton" class="secondary restore-order" type="button">我的排序！</button>
+          <button id="batchExportButton" class="secondary batch-export" type="button">批量导出</button>
+          <div id="exportActions" class="export-actions" hidden>
+            <select id="exportFormatSelect" title="导出格式">
+              <option value="txt">文本</option>
+              <option value="xls">Excel表格</option>
+            </select>
+            <button id="exportButton" class="primary" type="button">导出</button>
+            <button id="cancelExportButton" class="secondary" type="button">取消</button>
+          </div>
         </div>
       </section>
 
@@ -69,7 +78,13 @@
         <table>
           <thead>
             <tr>
-              <th><button class="sort-button" type="button" data-sort="index">序号</button></th>
+              <th id="indexHeader">
+                <button id="indexSortButton" class="sort-button" type="button" data-sort="index">序号</button>
+                <label id="selectAllWrap" class="select-all" hidden>
+                  <input id="selectAllInput" type="checkbox" />
+                  <span>全选</span>
+                </label>
+              </th>
               <th>股票</th>
               <th>备注</th>
               <th><button class="sort-button" type="button" data-sort="startDate">起始日期</button></th>
@@ -114,6 +129,6 @@
       </tr>
     </template>
 
-    <script src="./app.js?v=20260507-stableclose2"></script>
+    <script src="./app.js?v=20260507-export1"></script>
   </body>
 </html>

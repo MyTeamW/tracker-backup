@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -103,7 +107,7 @@ h1 {
 }
 
 .search-row {
-  grid-template-columns: minmax(220px, 360px) minmax(180px, 260px) minmax(180px, 260px) auto 1fr;
+  grid-template-columns: minmax(150px, 220px) minmax(180px, 260px) minmax(180px, 260px) auto auto 1fr;
 }
 
 label {
@@ -188,6 +192,29 @@ textarea:focus {
 .restore-order {
   min-width: 112px;
   white-space: nowrap;
+}
+
+.batch-export {
+  min-width: 104px;
+}
+
+.export-actions {
+  display: inline-flex;
+  align-items: end;
+  gap: 8px;
+}
+
+.export-actions[hidden] {
+  display: none;
+}
+
+.export-actions select {
+  width: 108px;
+}
+
+.export-actions .primary,
+.export-actions .secondary {
+  padding: 0 14px;
 }
 
 .delete {
@@ -293,6 +320,26 @@ td:first-child {
 
 th:first-child .sort-button {
   justify-content: center;
+}
+
+.select-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 24px;
+  color: inherit;
+  font: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+.select-all input,
+.row-select {
+  width: 18px;
+  min-height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
 }
 
 th:last-child,

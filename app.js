@@ -11,6 +11,8 @@ const state = {
   sortDirection: "desc",
   recentTradingDate: "",
   dragCode: "",
+  exportMode: false,
+  selectedCodes: new Set(),
 };
 
 const els = {
@@ -26,6 +28,14 @@ const els = {
   history: document.querySelector("#historySelect"),
   trash: document.querySelector("#trashSelect"),
   restoreOrder: document.querySelector("#restoreOrderButton"),
+  batchExport: document.querySelector("#batchExportButton"),
+  exportActions: document.querySelector("#exportActions"),
+  exportFormat: document.querySelector("#exportFormatSelect"),
+  exportButton: document.querySelector("#exportButton"),
+  cancelExport: document.querySelector("#cancelExportButton"),
+  indexSort: document.querySelector("#indexSortButton"),
+  selectAllWrap: document.querySelector("#selectAllWrap"),
+  selectAll: document.querySelector("#selectAllInput"),
   refresh: document.querySelector("#refreshButton"),
   status: document.querySelector("#updateStatus"),
   clock: document.querySelector("#clockText"),
@@ -118,6 +128,18 @@ function percent(value) {
   const num = Number(value);
   if (!Number.isFinite(num)) return "-";
   return `${(num * 100).toFixed(2)}%`;
+}
+
+function plain(value) {
+  return value === null || value === undefined || value === "" ? "-" : String(value);
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
 }
 
 function setTrend(cell, value) {
@@ -347,6 +369,20 @@ function updateSortButtons() {
   if (els.restoreOrder) els.restoreOrder.disabled = !state.sortKey;
 }
 
+function updateExportControls(visibleStocks = []) {
+  els.batchExport.hidden = state.exportMode;
+  els.exportActions.hidden = !state.exportMode;
+  els.indexSort.hidden = state.exportMode;
+  els.selectAllWrap.hidden = !state.exportMode;
+
+  if (!state.exportMode) return;
+  const visibleCodes = visibleStocks.map((stock) => stock.code);
+  const selectedVisibleCount = visibleCodes.filter((code) => state.selectedCodes.has(code)).length;
+  els.selectAll.checked = visibleCodes.length > 0 && selectedVisibleCount === visibleCodes.length;
+  els.selectAll.indeterminate = selectedVisibleCount > 0 && selectedVisibleCount < visibleCodes.length;
+  els.exportButton.disabled = selectedVisibleCount === 0;
+}
+
 function restoreManualOrder() {
   state.sortKey = "";
   state.sortDirection = "desc";
@@ -410,6 +446,7 @@ function render() {
   const stocks = filteredStocks();
   els.empty.hidden = stocks.length > 0;
   updateSortButtons();
+  updateExportControls(stocks);
   renderAuxiliarySelects();
 
   stocks.forEach((stock, index) => {
@@ -419,43 +456,57 @@ function render() {
     const computed = calculate(stock);
 
     cells.index.textContent = "";
-    const dragHandle = document.createElement("button");
-    dragHandle.className = "drag-handle";
-    dragHandle.type = "button";
-    dragHandle.draggable = true;
-    dragHandle.title = "拖拽排序";
-    dragHandle.setAttribute("aria-label", `拖拽排序 ${stock.name || stock.code}`);
-    dragHandle.textContent = `☰ ${index + 1}`;
-    cells.index.appendChild(dragHandle);
+    if (state.exportMode) {
+      const checkbox = document.createElement("input");
+      checkbox.className = "row-select";
+      checkbox.type = "checkbox";
+      checkbox.checked = state.selectedCodes.has(stock.code);
+      checkbox.setAttribute("aria-label", `选择 ${stock.name || stock.code}`);
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked) state.selectedCodes.add(stock.code);
+        else state.selectedCodes.delete(stock.code);
+        updateExportControls(filteredStocks());
+      });
+      cells.index.appendChild(checkbox);
+    } else {
+      const dragHandle = document.createElement("button");
+      dragHandle.className = "drag-handle";
+      dragHandle.type = "button";
+      dragHandle.draggable = true;
+      dragHandle.title = "拖拽排序";
+      dragHandle.setAttribute("aria-label", `拖拽排序 ${stock.name || stock.code}`);
+      dragHandle.textContent = `☰ ${index + 1}`;
+      cells.index.appendChild(dragHandle);
 
-    dragHandle.addEventListener("dragstart", (event) => {
-      state.dragCode = stock.code;
-      row.classList.add("dragging");
-      event.dataTransfer.effectAllowed = "move";
-      event.dataTransfer.setData("text/plain", stock.code);
-    });
+      dragHandle.addEventListener("dragstart", (event) => {
+        state.dragCode = stock.code;
+        row.classList.add("dragging");
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", stock.code);
+      });
 
-    dragHandle.addEventListener("dragend", () => {
-      state.dragCode = "";
-      row.classList.remove("dragging");
-    });
+      dragHandle.addEventListener("dragend", () => {
+        state.dragCode = "";
+        row.classList.remove("dragging");
+      });
 
-    row.addEventListener("dragover", (event) => {
-      if (!state.dragCode || state.dragCode === stock.code) return;
-      event.preventDefault();
-      row.classList.add("drag-over");
-    });
+      row.addEventListener("dragover", (event) => {
+        if (!state.dragCode || state.dragCode === stock.code) return;
+        event.preventDefault();
+        row.classList.add("drag-over");
+      });
 
-    row.addEventListener("dragleave", () => {
-      row.classList.remove("drag-over");
-    });
+      row.addEventListener("dragleave", () => {
+        row.classList.remove("drag-over");
+      });
 
-    row.addEventListener("drop", async (event) => {
-      event.preventDefault();
-      row.classList.remove("drag-over");
-      await moveStockBefore(state.dragCode, stock.code);
-      state.dragCode = "";
-    });
+      row.addEventListener("drop", async (event) => {
+        event.preventDefault();
+        row.classList.remove("drag-over");
+        await moveStockBefore(state.dragCode, stock.code);
+        state.dragCode = "";
+      });
+    }
 
     cells.identity.textContent = "";
     const nameLine = document.createElement("a");
@@ -920,6 +971,118 @@ async function initRemoteData() {
   repairCodeOnlyNames();
 }
 
+const exportHeaders = [
+  "序号",
+  "股票",
+  "备注",
+  "起始日期",
+  "添加起始日价",
+  "起始日起最高价",
+  "今日收盘价",
+  "涨幅",
+  "最高价回撤",
+  "起始价回撤",
+  "推荐人",
+  "收盘价日期",
+];
+
+function exportRow(stock, index) {
+  const computed = calculate(stock);
+  return [
+    String(index + 1),
+    stockLabel(stock),
+    plain(stock.remark),
+    plain(stock.startDate),
+    money(stock.startPrice),
+    money(stock.highPrice),
+    money(stock.closePrice),
+    percent(computed.increase),
+    percent(computed.highDrawdown),
+    percent(computed.startDrawdown),
+    plain(stock.recommender),
+    plain(stock.updatedAt),
+  ];
+}
+
+function selectedVisibleStocks() {
+  return filteredStocks().filter((stock) => state.selectedCodes.has(stock.code));
+}
+
+function closingDateLabel(stocks) {
+  const dates = [...new Set(stocks.map((stock) => stock.updatedAt).filter(Boolean))].sort();
+  return dates.length > 0 ? dates.join("、") : "-";
+}
+
+function downloadFile(filename, content, type) {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
+function exportAsText(stocks) {
+  const closeDate = closingDateLabel(stocks);
+  const lines = [
+    `导出日期（收盘价日期）：${closeDate}`,
+    `导出时间：${new Intl.DateTimeFormat("zh-CN", { dateStyle: "short", timeStyle: "medium" }).format(new Date())}`,
+    "",
+    exportHeaders.join("\t"),
+    ...stocks.map((stock, index) => exportRow(stock, index).join("\t")),
+  ];
+  downloadFile(`股票追踪-${closeDate}.txt`, lines.join("\n"), "text/plain;charset=utf-8");
+}
+
+function exportAsExcel(stocks) {
+  const closeDate = closingDateLabel(stocks);
+  const headerCells = exportHeaders.map((header) => `<th>${escapeHtml(header)}</th>`).join("");
+  const bodyRows = stocks
+    .map((stock, index) => `<tr>${exportRow(stock, index).map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`)
+    .join("");
+  const html = `<!doctype html>
+<html>
+<head><meta charset="utf-8" /></head>
+<body>
+<table>
+  <tr><td colspan="${exportHeaders.length}">导出日期（收盘价日期）：${escapeHtml(closeDate)}</td></tr>
+  <tr><td colspan="${exportHeaders.length}">导出时间：${escapeHtml(new Intl.DateTimeFormat("zh-CN", { dateStyle: "short", timeStyle: "medium" }).format(new Date()))}</td></tr>
+  <tr>${headerCells}</tr>
+  ${bodyRows}
+</table>
+</body>
+</html>`;
+  downloadFile(`股票追踪-${closeDate}.xls`, html, "application/vnd.ms-excel;charset=utf-8");
+}
+
+function enterExportMode() {
+  state.exportMode = true;
+  state.selectedCodes.clear();
+  render();
+  els.status.textContent = "请选择要导出的股票";
+}
+
+function cancelExportMode() {
+  state.exportMode = false;
+  state.selectedCodes.clear();
+  render();
+  els.status.textContent = "已取消批量导出";
+}
+
+function exportSelectedStocks() {
+  const stocks = selectedVisibleStocks();
+  if (stocks.length === 0) {
+    els.status.textContent = "请先选择要导出的股票";
+    return;
+  }
+  if (els.exportFormat.value === "xls") exportAsExcel(stocks);
+  else exportAsText(stocks);
+  els.status.textContent = `已导出 ${stocks.length} 只股票`;
+}
+
 els.form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const codes = parseCodes(els.code.value);
@@ -987,6 +1150,16 @@ els.search.addEventListener("input", () => {
   render();
 });
 
+els.selectAll.addEventListener("change", () => {
+  const stocks = filteredStocks();
+  if (els.selectAll.checked) {
+    stocks.forEach((stock) => state.selectedCodes.add(stock.code));
+  } else {
+    stocks.forEach((stock) => state.selectedCodes.delete(stock.code));
+  }
+  render();
+});
+
 els.history.addEventListener("change", () => {
   const stock = state.allStocks.find((item) => item.code === els.history.value);
   if (!stock) return;
@@ -1016,6 +1189,9 @@ els.sortButtons.forEach((button) => {
 });
 
 els.restoreOrder.addEventListener("click", restoreManualOrder);
+els.batchExport.addEventListener("click", enterExportMode);
+els.cancelExport.addEventListener("click", cancelExportMode);
+els.exportButton.addEventListener("click", exportSelectedStocks);
 els.refresh.addEventListener("click", refreshVisibleStocks);
 
 updateClock();
