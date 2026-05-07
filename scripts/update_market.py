@@ -3,7 +3,7 @@ import os
 import sys
 from datetime import date, datetime, time
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
@@ -314,34 +314,36 @@ def fetch_history(stock: dict) -> dict:
 def sync_supabase(stocks: list[dict]) -> None:
     if not SUPABASE_URL or not SUPABASE_KEY:
         return
-    rows = [
-        {
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal",
+    }
+    endpoint = f"{SUPABASE_URL.rstrip('/')}/rest/v1/stocks"
+    for stock in stocks:
+        row = {
             "code": stock["code"],
             "name": stock.get("name") or stock["code"],
             "remark": stock.get("remark") or "",
             "recommender": stock.get("recommender") or "",
             "start_date": stock.get("startDate"),
-            "start_price": stock.get("startPrice"),
             "high_price": stock.get("highPrice"),
             "close_price": stock.get("closePrice"),
             "last_quote_date": stock.get("updatedAt"),
             "deleted": bool(stock.get("deleted", False)),
         }
-        for stock in stocks
-    ]
-    request = Request(
-        f"{SUPABASE_URL.rstrip('/')}/rest/v1/stocks?on_conflict=code",
-        data=json.dumps(rows, ensure_ascii=False).encode("utf-8"),
-        headers={
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "application/json",
-            "Prefer": "resolution=merge-duplicates",
-        },
-        method="POST",
-    )
-    with urlopen(request, timeout=30) as response:
-        response.read()
+        start_price = stock.get("startPrice")
+        if start_price is not None:
+            row["start_price"] = start_price
+        request = Request(
+            f"{endpoint}?code=eq.{quote(stock['code'])}",
+            data=json.dumps(row, ensure_ascii=False).encode("utf-8"),
+            headers=headers,
+            method="PATCH",
+        )
+        with urlopen(request, timeout=30) as response:
+            response.read()
 
 
 def main() -> int:

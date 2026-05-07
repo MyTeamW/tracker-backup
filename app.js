@@ -239,18 +239,20 @@ function syncActiveStocks() {
 }
 
 function toDb(stock) {
-  return {
+  const row = {
     code: stock.code,
     name: stock.name || stock.code,
     remark: stock.remark || "",
     recommender: stock.recommender || "",
     start_date: stock.startDate || state.recentTradingDate || previousWeekday(),
-    start_price: Number(stock.startPrice) || null,
     high_price: Number(stock.highPrice) || null,
     close_price: Number(stock.closePrice) || null,
     last_quote_date: stock.updatedAt || null,
     deleted: Boolean(stock.deleted),
   };
+  const startPrice = Number(stock.startPrice);
+  if (Number.isFinite(startPrice) && startPrice > 0) row.start_price = startPrice;
+  return row;
 }
 
 async function loadRemoteStocks() {
