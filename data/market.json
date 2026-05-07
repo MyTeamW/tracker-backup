@@ -648,6 +648,6 @@
     }
   ],
   "failures": [
-    "920953: No market data returned for 920953; realtime fallback failed: <urlopen error _ssl.c:993: The handshake operation timed out>"
+    "920953: No market data returned for 920953; realtime fallback failed: No realtime data returned for 920953"
   ]
 }
