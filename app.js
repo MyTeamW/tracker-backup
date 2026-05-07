@@ -43,6 +43,17 @@ function today() {
   return formatDate(new Date());
 }
 
+function chinaNow() {
+  return new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" }));
+}
+
+function isAfterChinaClose() {
+  const now = chinaNow();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  return hour > 15 || (hour === 15 && minute >= 5);
+}
+
 function previousWeekday() {
   const date = new Date();
   const day = date.getDay();
@@ -83,6 +94,18 @@ function secuCode(code) {
 
 function sohuCode(code) {
   return `cn_${code}`;
+}
+
+function tencentSymbol(code) {
+  const cleanCode = normalizeCode(code);
+  if (/^6|^9/.test(cleanCode)) return `sh${cleanCode}`;
+  if (/^4|^8/.test(cleanCode)) return `bj${cleanCode}`;
+  return `sz${cleanCode}`;
+}
+
+function eastMoneyPrice(value) {
+  const num = Number(value);
+  return Number.isFinite(num) && num > 0 ? num / 100 : NaN;
 }
 
 function money(value) {
@@ -716,12 +739,100 @@ async function fetchStockFromSohu(code, startDate, forcedStartPrice, name = "") 
   };
 }
 
-async function fetchStockQuote(code, startDate, forcedStartPrice, name = "") {
+async function fetchRealtimeQuote(code) {
+  const cleanCode = normalizeCode(code);
   try {
-    return await fetchStockFromEastMoney(code, startDate, forcedStartPrice);
+    return await fetchTencentRealtimeQuote(cleanCode);
   } catch {
-    return fetchStockFromSohu(code, startDate, forcedStartPrice, name);
+    return fetchEastMoneyRealtimeQuote(cleanCode);
   }
+}
+
+async function fetchTencentRealtimeQuote(code) {
+  const cleanCode = normalizeCode(code);
+  const response = await fetch(`https://qt.gtimg.cn/q=${tencentSymbol(cleanCode)}`, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Tencent quote HTTP ${response.status}`);
+  const text = await response.text();
+  const match = text.match(/="([^"]*)"/);
+  const parts = match ? match[1].split("~") : [];
+  const closePrice = Number(parts[3]);
+  const highPrice = Number(parts[33]);
+  const rawDate = String(parts[30] || "").slice(0, 8);
+  if (!Number.isFinite(closePrice) || rawDate.length !== 8) throw new Error("腾讯实时行情无效");
+  return {
+    code: cleanCode,
+    name: parts[1] || "",
+    closePrice,
+    highPrice: Number.isFinite(highPrice) ? highPrice : closePrice,
+    updatedAt: `${rawDate.slice(0, 4)}-${rawDate.slice(4, 6)}-${rawDate.slice(6, 8)}`,
+  };
+}
+
+async function fetchEastMoneyRealtimeQuote(code) {
+  const cleanCode = normalizeCode(code);
+  const url = new URL("https://push2.eastmoney.com/api/qt/stock/get");
+  url.searchParams.set("secid", secid(cleanCode));
+  url.searchParams.set("fields", "f43,f44,f57,f58,f86");
+  const payload = await jsonp(url.toString(), "cb");
+  const data = payload && payload.data;
+  if (!data) throw new Error("未找到实时行情");
+  const closePrice = eastMoneyPrice(data.f43);
+  const highPrice = eastMoneyPrice(data.f44);
+  const timestamp = Number(data.f86);
+  if (!Number.isFinite(closePrice) || !Number.isFinite(timestamp)) throw new Error("实时行情无效");
+  return {
+    code: cleanCode,
+    name: data.f58 || "",
+    closePrice,
+    highPrice,
+    updatedAt: formatDate(new Date(timestamp * 1000)),
+  };
+}
+
+async function useRealtimeAfterClose(quote) {
+  if (!isAfterChinaClose()) return quote;
+  try {
+    const realtime = await fetchRealtimeQuote(quote.code);
+    if (!realtime.updatedAt || !quote.updatedAt || realtime.updatedAt <= quote.updatedAt) return quote;
+    return {
+      ...quote,
+      name: quote.name || realtime.name,
+      closePrice: realtime.closePrice,
+      highPrice: Math.max(Number(quote.highPrice) || 0, Number(realtime.highPrice) || 0),
+      updatedAt: realtime.updatedAt,
+    };
+  } catch {
+    return quote;
+  }
+}
+
+async function fetchStockQuote(code, startDate, forcedStartPrice, name = "") {
+  let quote;
+  try {
+    quote = await fetchStockFromEastMoney(code, startDate, forcedStartPrice);
+  } catch {
+    try {
+      quote = await fetchStockFromSohu(code, startDate, forcedStartPrice, name);
+    } catch (error) {
+      if (!isAfterChinaClose()) throw error;
+      const realtime = await fetchRealtimeQuote(code);
+      quote = {
+        code: normalizeCode(code),
+        name: name || realtime.name,
+        startDate,
+        closePrice: realtime.closePrice,
+        highPrice: realtime.highPrice,
+        updatedAt: realtime.updatedAt,
+        deleted: false,
+      };
+      if (Number(forcedStartPrice) > 0) quote.startPrice = Number(forcedStartPrice);
+    }
+  }
+  return useRealtimeAfterClose(quote);
+}
+
+function isOlderQuote(next, current) {
+  return Boolean(next.updatedAt && current.updatedAt && next.updatedAt < current.updatedAt);
 }
 
 async function changeStartDate(stock, startDate, input) {
@@ -747,6 +858,7 @@ async function refreshVisibleStocks() {
   for (const stock of state.stocks) {
     try {
       const next = await fetchStockQuote(stock.code, stock.startDate, stock.startPrice, stock.name);
+      if (isOlderQuote(next, stock)) continue;
       await upsertRemoteStock({
         ...stock,
         ...next,
