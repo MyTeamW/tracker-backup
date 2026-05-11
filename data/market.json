@@ -1054,11 +1054,6 @@
     }
   ],
   "failures": [
-    "300342: history failed, used realtime fallback (Remote end closed connection without response)",
-    "603687: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300666: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002645: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688343: history failed, used realtime fallback (Remote end closed connection without response)",
     "603045: history failed, used realtime fallback (Remote end closed connection without response)",
     "688110: history failed, used realtime fallback (Remote end closed connection without response)",
     "002023: history failed, used realtime fallback (Remote end closed connection without response)",
@@ -1080,7 +1075,7 @@
     "603920: history failed, used realtime fallback (Remote end closed connection without response)",
     "300433: history failed, used realtime fallback (Remote end closed connection without response)",
     "000988: history failed, used realtime fallback (Remote end closed connection without response)",
-    "920953: Remote end closed connection without response; realtime fallback failed: No realtime data returned for 920953",
+    "920953: Remote end closed connection without response; realtime fallback failed: <urlopen error _ssl.c:993: The handshake operation timed out>",
     "002537: history failed, used realtime fallback (Remote end closed connection without response)",
     "601339: history failed, used realtime fallback (Remote end closed connection without response)",
     "000539: history failed, used realtime fallback (Remote end closed connection without response)",
