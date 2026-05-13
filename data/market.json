@@ -1306,13 +1306,7 @@
     }
   ],
   "failures": [
-    "002997: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "688037: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "688525: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "001309: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688307: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "300308: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "688795: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688205: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688981: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688256: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
