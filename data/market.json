@@ -1138,6 +1138,7 @@
     "300260: history failed, used realtime fallback (Remote end closed connection without response)",
     "001267: history failed, used realtime fallback (Remote end closed connection without response)",
     "002796: history failed, used realtime fallback (Remote end closed connection without response)",
+    "300706: history failed, used realtime fallback (Remote end closed connection without response)",
     "300342: history failed, used realtime fallback (Remote end closed connection without response)",
     "002645: history failed, used realtime fallback (Remote end closed connection without response)",
     "603045: history failed, used realtime fallback (Remote end closed connection without response)",
