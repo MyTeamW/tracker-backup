@@ -1208,7 +1208,7 @@
     }
   ],
   "failures": [
-    "003007: history failed, used realtime fallback (<urlopen error [Errno 104] Connection reset by peer>)",
-    "300499: history failed, used realtime fallback (<urlopen error _ssl.c:993: The handshake operation timed out>)"
+    "000733: history failed, used realtime fallback (<urlopen error _ssl.c:993: The handshake operation timed out>)",
+    "603601: history failed, used realtime fallback (<urlopen error _ssl.c:993: The handshake operation timed out>)"
   ]
 }
