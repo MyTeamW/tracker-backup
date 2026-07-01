@@ -942,28 +942,8 @@
     }
   ],
   "failures": [
-    "300456: history failed, used realtime fallback (Remote end closed connection without response)",
-    "600522: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300269: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688589: history failed, used realtime fallback (Remote end closed connection without response)",
-    "301379: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688127: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688728: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300655: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688333: history failed, used realtime fallback (Remote end closed connection without response)",
-    "600237: history failed, used realtime fallback (Remote end closed connection without response)",
-    "301269: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002407: history failed, used realtime fallback (Remote end closed connection without response)",
     "301348: history failed, used realtime fallback (Remote end closed connection without response)",
     "301165: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688249: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002983: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300346: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688008: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002724: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300390: history failed, used realtime fallback (Remote end closed connection without response)",
-    "603078: history failed, used realtime fallback (Remote end closed connection without response)",
-    "920249: Remote end closed connection without response; realtime fallback failed: No realtime data returned for 920249",
-    "300221: history failed, used realtime fallback (Remote end closed connection without response)"
+    "920249: No market data returned for 920249; realtime fallback failed: No realtime data returned for 920249"
   ]
 }
