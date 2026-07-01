@@ -942,8 +942,25 @@
     }
   ],
   "failures": [
-    "301348: history failed, used realtime fallback (Remote end closed connection without response)",
-    "301165: history failed, used realtime fallback (Remote end closed connection without response)",
-    "920249: No market data returned for 920249; realtime fallback failed: No realtime data returned for 920249"
+    "000925: history failed, used realtime fallback (Remote end closed connection without response)",
+    "600545: history failed, used realtime fallback (Remote end closed connection without response)",
+    "000725: history failed, used realtime fallback (<urlopen error _ssl.c:993: The handshake operation timed out>)",
+    "688190: history failed, used realtime fallback (<urlopen error _ssl.c:993: The handshake operation timed out>)",
+    "688508: history failed, used realtime fallback (Remote end closed connection without response)",
+    "600184: history failed, used realtime fallback (Remote end closed connection without response)",
+    "688416: history failed, used realtime fallback (Remote end closed connection without response)",
+    "301013: history failed, used realtime fallback (Remote end closed connection without response)",
+    "688333: history failed, used realtime fallback (Remote end closed connection without response)",
+    "600237: history failed, used realtime fallback (Remote end closed connection without response)",
+    "301269: history failed, used realtime fallback (Remote end closed connection without response)",
+    "002724: history failed, used realtime fallback (Remote end closed connection without response)",
+    "300708: history failed, used realtime fallback (Remote end closed connection without response)",
+    "920249: No market data returned for 920249; realtime fallback failed: No realtime data returned for 920249",
+    "300221: history failed, used realtime fallback (Remote end closed connection without response)",
+    "300600: history failed, used realtime fallback (Remote end closed connection without response)",
+    "300241: history failed, used realtime fallback (Remote end closed connection without response)",
+    "300174: history failed, used realtime fallback (Remote end closed connection without response)",
+    "603031: history failed, used realtime fallback (Remote end closed connection without response)",
+    "600707: history failed, used realtime fallback (Remote end closed connection without response)"
   ]
 }
