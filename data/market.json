@@ -942,9 +942,6 @@
     }
   ],
   "failures": [
-    "688795: history failed, used realtime fallback (Remote end closed connection without response)",
-    "000925: history failed, used realtime fallback (Remote end closed connection without response)",
-    "600545: history failed, used realtime fallback (Remote end closed connection without response)",
     "300456: history failed, used realtime fallback (Remote end closed connection without response)",
     "600522: history failed, used realtime fallback (Remote end closed connection without response)",
     "002273: history failed, used realtime fallback (Remote end closed connection without response)",
@@ -987,7 +984,7 @@
     "300390: history failed, used realtime fallback (Remote end closed connection without response)",
     "603078: history failed, used realtime fallback (Remote end closed connection without response)",
     "300708: history failed, used realtime fallback (Remote end closed connection without response)",
-    "920249: Remote end closed connection without response; realtime fallback failed: <urlopen error _ssl.c:993: The handshake operation timed out>",
+    "920249: Remote end closed connection without response; realtime fallback failed: No realtime data returned for 920249",
     "300221: history failed, used realtime fallback (Remote end closed connection without response)",
     "300120: history failed, used realtime fallback (Remote end closed connection without response)",
     "300600: history failed, used realtime fallback (Remote end closed connection without response)",
@@ -1003,6 +1000,7 @@
     "688693: history failed, used realtime fallback (Remote end closed connection without response)",
     "301191: history failed, used realtime fallback (Remote end closed connection without response)",
     "300174: history failed, used realtime fallback (Remote end closed connection without response)",
+    "000733: history failed, used realtime fallback (Remote end closed connection without response)",
     "688549: history failed, used realtime fallback (Remote end closed connection without response)",
     "002842: history failed, used realtime fallback (Remote end closed connection without response)",
     "603031: history failed, used realtime fallback (Remote end closed connection without response)",
