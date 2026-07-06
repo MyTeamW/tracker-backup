@@ -987,7 +987,7 @@
     "300390: history failed, used realtime fallback (Remote end closed connection without response)",
     "603078: history failed, used realtime fallback (Remote end closed connection without response)",
     "300708: history failed, used realtime fallback (Remote end closed connection without response)",
-    "920249: Remote end closed connection without response; realtime fallback failed: HTTP Error 502: Bad Gateway",
+    "920249: Remote end closed connection without response; realtime fallback failed: No realtime data returned for 920249",
     "300221: history failed, used realtime fallback (Remote end closed connection without response)",
     "300120: history failed, used realtime fallback (Remote end closed connection without response)",
     "300600: history failed, used realtime fallback (Remote end closed connection without response)",
@@ -1003,9 +1003,7 @@
     "688693: history failed, used realtime fallback (Remote end closed connection without response)",
     "301191: history failed, used realtime fallback (Remote end closed connection without response)",
     "300174: history failed, used realtime fallback (Remote end closed connection without response)",
-    "000733: history failed, used realtime fallback (Remote end closed connection without response)",
     "688549: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002842: history failed, used realtime fallback (Remote end closed connection without response)",
     "603031: history failed, used realtime fallback (Remote end closed connection without response)",
     "300499: history failed, used realtime fallback (Remote end closed connection without response)",
     "600707: history failed, used realtime fallback (Remote end closed connection without response)"
