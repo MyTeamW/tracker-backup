@@ -933,7 +933,7 @@
       "recommender": "",
       "startDate": "2026-07-01",
       "startPrice": 17.52,
-      "highPrice": 17.74,
+      "highPrice": 18.35,
       "closePrice": 10.76,
       "updatedAt": "2026-07-13",
       "deleted": false,
@@ -1003,9 +1003,8 @@
     "688693: history failed, used realtime fallback (Remote end closed connection without response)",
     "301191: history failed, used realtime fallback (Remote end closed connection without response)",
     "300174: history failed, used realtime fallback (Remote end closed connection without response)",
+    "000733: history failed, used realtime fallback (Remote end closed connection without response)",
     "688549: history failed, used realtime fallback (Remote end closed connection without response)",
-    "603031: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300499: history failed, used realtime fallback (Remote end closed connection without response)",
-    "600707: history failed, used realtime fallback (Remote end closed connection without response)"
+    "300499: history failed, used realtime fallback (Remote end closed connection without response)"
   ]
 }
