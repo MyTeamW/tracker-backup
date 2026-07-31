@@ -115,6 +115,20 @@
       "sortOrder": 320.0
     },
     {
+      "code": "002131",
+      "name": "利欧股份",
+      "remark": "数字营销、泵业机械、园林机械",
+      "recommender": "",
+      "startDate": "2024-01-01",
+      "startPrice": 5.64,
+      "highPrice": 10.4,
+      "closePrice": 4.66,
+      "updatedAt": "2026-07-31",
+      "deleted": false,
+      "createdAt": "2026-04-27T07:19:23.579323+00:00",
+      "sortOrder": 460.0
+    },
+    {
       "code": "300095",
       "name": "华伍股份",
       "remark": "从事工业制动器、设计、传动部件、工业制动器主要作为起重运输机械",
@@ -126,6 +140,20 @@
       "updatedAt": "2026-07-31",
       "deleted": false,
       "createdAt": "2026-04-30T08:32:45.684161+00:00",
+      "sortOrder": 470.0
+    },
+    {
+      "code": "002716",
+      "name": "湖南白银",
+      "remark": "白银、电解铅、黄金、电积铜",
+      "recommender": "",
+      "startDate": "2024-01-01",
+      "startPrice": 6.92,
+      "highPrice": 21.3,
+      "closePrice": 7.99,
+      "updatedAt": "2026-07-31",
+      "deleted": false,
+      "createdAt": "2026-04-27T07:19:23.579323+00:00",
       "sortOrder": 470.0
     },
     {
@@ -169,6 +197,20 @@
       "deleted": false,
       "createdAt": "2026-04-28T02:03:52.307847+00:00",
       "sortOrder": 670.0
+    },
+    {
+      "code": "300058",
+      "name": "蓝色光标",
+      "remark": "数字营销、品牌管理、广告服务",
+      "recommender": "",
+      "startDate": "2024-01-01",
+      "startPrice": 11.52,
+      "highPrice": 24.43,
+      "closePrice": 14.35,
+      "updatedAt": "2026-07-31",
+      "deleted": false,
+      "createdAt": "2026-04-27T07:19:23.579323+00:00",
+      "sortOrder": 760.0
     },
     {
       "code": "300269",
@@ -942,14 +984,21 @@
     }
   ],
   "failures": [
+    "688795: history failed, used realtime fallback (Remote end closed connection without response)",
+    "000925: history failed, used realtime fallback (Remote end closed connection without response)",
+    "600545: history failed, used realtime fallback (Remote end closed connection without response)",
     "300456: history failed, used realtime fallback (Remote end closed connection without response)",
     "600522: history failed, used realtime fallback (Remote end closed connection without response)",
     "002273: history failed, used realtime fallback (Remote end closed connection without response)",
     "300260: history failed, used realtime fallback (Remote end closed connection without response)",
     "603687: history failed, used realtime fallback (Remote end closed connection without response)",
+    "002131: history failed, used realtime fallback (Remote end closed connection without response)",
     "300095: history failed, used realtime fallback (Remote end closed connection without response)",
+    "002716: history failed, used realtime fallback (Remote end closed connection without response)",
+    "000988: history failed, used realtime fallback (Remote end closed connection without response)",
     "002655: history failed, used realtime fallback (Remote end closed connection without response)",
     "688403: history failed, used realtime fallback (Remote end closed connection without response)",
+    "300058: history failed, used realtime fallback (Remote end closed connection without response)",
     "300269: history failed, used realtime fallback (Remote end closed connection without response)",
     "688589: history failed, used realtime fallback (Remote end closed connection without response)",
     "301379: history failed, used realtime fallback (Remote end closed connection without response)",
@@ -983,7 +1032,7 @@
     "300390: history failed, used realtime fallback (Remote end closed connection without response)",
     "603078: history failed, used realtime fallback (Remote end closed connection without response)",
     "300708: history failed, used realtime fallback (Remote end closed connection without response)",
-    "920249: Remote end closed connection without response; realtime fallback failed: No realtime data returned for 920249",
+    "920249: Remote end closed connection without response; realtime fallback failed: <urlopen error _ssl.c:993: The handshake operation timed out>",
     "300221: history failed, used realtime fallback (Remote end closed connection without response)",
     "300120: history failed, used realtime fallback (Remote end closed connection without response)",
     "300600: history failed, used realtime fallback (Remote end closed connection without response)",
