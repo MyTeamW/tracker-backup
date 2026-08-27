@@ -837,6 +837,7 @@
     "300010: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300174: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "601678: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
+    "000733: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "002771: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688549: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "002842: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
