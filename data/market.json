@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24",
+  "updatedAt": "2026-09-25",
   "source": "eastmoney",
   "stocks": [
     {
@@ -675,52 +675,5 @@
       "sortOrder": null
     }
   ],
-  "failures": [
-    "002886: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688386: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002169: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002298: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300093: history failed, used realtime fallback (Remote end closed connection without response)",
-    "603068: history failed, used realtime fallback (Remote end closed connection without response)",
-    "000633: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002579: history failed, used realtime fallback (Remote end closed connection without response)",
-    "301360: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688168: history failed, used realtime fallback (Remote end closed connection without response)",
-    "301107: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002591: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300306: history failed, used realtime fallback (Remote end closed connection without response)",
-    "603660: history failed, used realtime fallback (Remote end closed connection without response)",
-    "000878: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300269: history failed, used realtime fallback (Remote end closed connection without response)",
-    "301379: history failed, used realtime fallback (Remote end closed connection without response)",
-    "600184: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300655: history failed, used realtime fallback (Remote end closed connection without response)",
-    "600237: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002407: history failed, used realtime fallback (Remote end closed connection without response)",
-    "301348: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002983: history failed, used realtime fallback (Remote end closed connection without response)",
-    "603078: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300708: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300120: history failed, used realtime fallback (Remote end closed connection without response)",
-    "000100: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300174: history failed, used realtime fallback (Remote end closed connection without response)",
-    "601678: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002771: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688549: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002842: history failed, used realtime fallback (Remote end closed connection without response)",
-    "603031: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300499: history failed, used realtime fallback (Remote end closed connection without response)",
-    "600545: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300456: history failed, used realtime fallback (Remote end closed connection without response)",
-    "600522: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002273: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300095: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002655: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688403: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688105: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300324: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300314: history failed, used realtime fallback (Remote end closed connection without response)",
-    "300583: history failed, used realtime fallback (Remote end closed connection without response)",
-    "688589: history failed, used realtime fallback (Remote end closed connection without response)"
-  ]
+  "failures": []
 }
