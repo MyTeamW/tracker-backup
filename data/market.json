@@ -676,10 +676,8 @@
     }
   ],
   "failures": [
-    "002886: history failed, used realtime fallback (Remote end closed connection without response)",
     "688386: history failed, used realtime fallback (Remote end closed connection without response)",
     "002169: history failed, used realtime fallback (Remote end closed connection without response)",
-    "002298: history failed, used realtime fallback (Remote end closed connection without response)",
     "300093: history failed, used realtime fallback (Remote end closed connection without response)",
     "300069: history failed, used realtime fallback (Remote end closed connection without response)",
     "603068: history failed, used realtime fallback (Remote end closed connection without response)",
