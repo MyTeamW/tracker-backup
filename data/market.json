@@ -676,6 +676,8 @@
     }
   ],
   "failures": [
+    "300112: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
+    "002886: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688386: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "002169: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "002298: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
@@ -684,8 +686,10 @@
     "603068: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "000633: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "002579: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
+    "301360: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688168: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "301107: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
+    "002591: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300306: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "603660: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "000878: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
@@ -710,13 +714,10 @@
     "300499: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "600545: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300456: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "600522: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "002273: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300095: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "002655: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688403: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688105: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "300324: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300314: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300583: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688589: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close"
