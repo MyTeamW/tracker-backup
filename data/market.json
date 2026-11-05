@@ -675,9 +675,5 @@
       "sortOrder": null
     }
   ],
-  "failures": [
-    "300112: history failed, used realtime fallback (<urlopen error _ssl.c:994: The handshake operation timed out>)",
-    "002886: history failed, used realtime fallback (<urlopen error _ssl.c:994: The handshake operation timed out>)",
-    "688386: history failed, used realtime fallback (<urlopen error _ssl.c:994: The handshake operation timed out>)"
-  ]
+  "failures": []
 }
