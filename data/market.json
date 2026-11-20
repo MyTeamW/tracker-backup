@@ -150,8 +150,8 @@
       "startDate": "2026-09-17",
       "startPrice": 60.23,
       "highPrice": 72.34,
-      "closePrice": 49.37,
-      "updatedAt": "2026-11-19",
+      "closePrice": 44.88,
+      "updatedAt": "2026-11-20",
       "deleted": false,
       "createdAt": "2026-09-17T06:46:50.363268+00:00",
       "sortOrder": 110.0
@@ -178,8 +178,8 @@
       "startDate": "2026-09-17",
       "startPrice": 22.79,
       "highPrice": 25.91,
-      "closePrice": 17.5,
-      "updatedAt": "2026-11-19",
+      "closePrice": 16.33,
+      "updatedAt": "2026-11-20",
       "deleted": false,
       "createdAt": "2026-09-17T06:42:44.964617+00:00",
       "sortOrder": 130.0
@@ -676,12 +676,13 @@
     }
   ],
   "failures": [
+    "002169: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "002298: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300093: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300069: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
+    "603068: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "000633: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "301360: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "688168: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "301107: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "002591: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300306: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
