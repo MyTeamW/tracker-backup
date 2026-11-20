@@ -52,8 +52,8 @@
       "startDate": "2026-09-22",
       "startPrice": 14.49,
       "highPrice": 15.28,
-      "closePrice": 7.89,
-      "updatedAt": "2026-11-19",
+      "closePrice": 7.31,
+      "updatedAt": "2026-11-20",
       "deleted": false,
       "createdAt": "2026-09-21T02:26:08.355547+00:00",
       "sortOrder": 40.0
@@ -108,8 +108,8 @@
       "startDate": "2026-09-17",
       "startPrice": 36.17,
       "highPrice": 49.98,
-      "closePrice": 32.18,
-      "updatedAt": "2026-11-19",
+      "closePrice": 29.83,
+      "updatedAt": "2026-11-20",
       "deleted": false,
       "createdAt": "2026-09-17T06:52:52.222229+00:00",
       "sortOrder": 80.0
@@ -676,11 +676,10 @@
     }
   ],
   "failures": [
-    "688386: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "002169: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
+    "002298: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300093: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "300069: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
-    "603068: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
+    "000633: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "301360: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "688168: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
     "301107: Remote end closed connection without response; realtime fallback failed: Realtime close fallback is only used after market close",
